@@ -1,0 +1,19 @@
+version: "3.1"
+# permet de charger tous les logiciels dont notre projet dépend
+services:
+    db:
+      image: mariadb:10.4.8 # image qui sera téléchargé depuis le site docker-hub.com
+      container_name: BDD_Revues # le nom d'un conteneur est unique, c'est un identifiant
+      environment:
+        - MYSQL_ROOT_PASSWORD=root
+        - MYSQL_USER=user
+        - MYSQL_PASSWORD=user
+      volumes: 
+        - ./bdd:/docker-entrypoint-initdb.d
+      ports:
+        - 2306:3306 # attention au port 2306, il faut s'assurer qu'il ne soit pas pris. Changez le si nécessaire
+
+    adminer:
+      image: adminer 
+      ports:
+        - 2307:8080 # attention au port 2307, il faut s'assurer qu'il ne soit pas pris. Changez le si nécessaire
