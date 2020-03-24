@@ -18,6 +18,7 @@ namespace Revues.Domaine
         public virtual DbSet<Articles> Articles { get; set; }
         public virtual DbSet<Auteurs> Auteurs { get; set; }
         public virtual DbSet<Ecrit> Ecrit { get; set; }
+        public virtual DbSet<Numero> Numero { get; set; }
         public virtual DbSet<Revues> Revues { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -111,6 +112,49 @@ namespace Revues.Domaine
                     .HasForeignKey(d => d.AuteursId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("fk_auteurs_has_articles_auteurs1");
+            });
+
+            modelBuilder.Entity<Numero>(entity =>
+            {
+                entity.ToTable("numero");
+
+                entity.HasIndex(e => e.ArticlesId)
+                    .HasName("fk_articles_has_revues_articles1_idx");
+
+                entity.HasIndex(e => e.RevuesId)
+                    .HasName("fk_articles_has_revues_revues1_idx");
+
+                entity.Property(e => e.Id)
+                    .HasColumnName("id")
+                    .HasColumnType("int(11)");
+
+                entity.Property(e => e.ArticlesId)
+                    .HasColumnName("articles_id")
+                    .HasColumnType("int(11)");
+
+                entity.Property(e => e.PageDebut)
+                    .HasColumnName("page_debut")
+                    .HasColumnType("int(11)");
+
+                entity.Property(e => e.PageFin)
+                    .HasColumnName("page_fin")
+                    .HasColumnType("int(11)");
+
+                entity.Property(e => e.RevuesId)
+                    .HasColumnName("revues_id")
+                    .HasColumnType("int(11)");
+
+                entity.HasOne(d => d.Articles)
+                    .WithMany(p => p.Numero)
+                    .HasForeignKey(d => d.ArticlesId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("fk_articles_has_revues_articles1");
+
+                entity.HasOne(d => d.Revues)
+                    .WithMany(p => p.Numero)
+                    .HasForeignKey(d => d.RevuesId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("fk_articles_has_revues_revues1");
             });
 
             modelBuilder.Entity<Revues>(entity =>

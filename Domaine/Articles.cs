@@ -8,6 +8,7 @@ namespace Revues.Domaine
         public Articles()
         {
             Ecrit = new HashSet<Ecrit>();
+            Numero = new HashSet<Numero>();
         }
 
         public int Id { get; set; }
@@ -15,5 +16,6 @@ namespace Revues.Domaine
         public string Contenu { get; set; }
 
         public virtual ICollection<Ecrit> Ecrit { get; set; }
+        public virtual ICollection<Numero> Numero { get; set; }
     }
 }
