@@ -4,13 +4,13 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace Revues.Domaine
 {
-    public partial class bdd_revuesContext : DbContext
+    public partial class RevuesContext : DbContext
     {
-        public bdd_revuesContext()
+        public RevuesContext()
         {
         }
 
-        public bdd_revuesContext(DbContextOptions<bdd_revuesContext> options)
+        public RevuesContext(DbContextOptions<RevuesContext> options)
             : base(options)
         {
         }

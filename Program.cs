@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Revues.Domaine;
+using Revues.Repository;
 
 namespace Revues
 {
@@ -13,7 +15,16 @@ namespace Revues
     {
         public static void Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
+            RevuesContext context = new RevuesContext();
+
+            AuteursRepository aRepo = new AuteursRepository(context);
+
+            var auteurs = aRepo.FindAll();
+
+            foreach (var auteur in auteurs)
+            {
+                Console.WriteLine(auteurs);
+            }
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
