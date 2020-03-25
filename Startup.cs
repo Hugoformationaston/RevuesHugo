@@ -33,6 +33,8 @@ namespace Revues
 
             services.AddTransient<ArticlesImplementsRepository>(); /// Injection de dépendance d'Articles///
             services.AddTransient<AuteursImplementsRepository>(); /// Injection de dépendance d'Auteurs///
+            services.AddTransient<NumeroImplementsRepository>(); /// Injection de dépendance de Numeros///
+            services.AddTransient<RevuesImplementsRepository>(); /// Injection de dépendance de Revues///
 
             services.AddControllers();
         }

@@ -12,7 +12,7 @@ namespace Revues.Controllers
 
     /// <summary>
     /// Route "/auteurs" permet d'accéder aux fonctions liées à celui çi depuis l'url.
-    /// exemple d'url en serveur local : "https://localhost:44374/aauteurs"
+    /// exemple d'url en serveur local : "https://localhost:44374/auteurs"
     /// Pour rappel, le nom des routes doit OBLIGATOIREMENT être mis aux pluriels et sans majuscule.
     /// </summary>
     [ApiController]
@@ -69,7 +69,7 @@ namespace Revues.Controllers
         }
 
         /// <summary>
-        /// La fonction "Delete" utilise la fonction "Delete" du service repository et fais une 
+        /// La fonction "Remove" utilise la fonction "Remove" du service repository et fais une 
         /// requête "HttpDelete" au serveur pour supprimer un Auteur via son Id.
         /// </summary>
         [HttpDelete]
