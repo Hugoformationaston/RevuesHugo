@@ -8,9 +8,9 @@ namespace Revues.Repository
 {
     public class ArticlesImplementsRepository : CrudRepository<Articles>
     {
-        private RevuesContext context;
+        private RevueContext context;
 
-        public ArticlesImplementsRepository(RevuesContext context)
+        public ArticlesImplementsRepository(RevueContext context)
         {
             this.context = context;
         }
@@ -23,31 +23,33 @@ namespace Revues.Repository
         public IQueryable<Articles> FindAll()
         {
             //SELECT * FROM Auteurs;
-            return this.context.Articles.Select(Article => Article);
+            return this.context.Articles.Select(article => article);
         }
         public Articles FindByID(int id)
         {
-            return this.con
+            return this.context.Articles
+                .Where(article => article.Id == id)
+                .First();
         }
 
-        public IQueryable<Articles> Remove(int id)
+        public void Remove(int id)
         {
-            throw new NotImplementedException();
+            this.context.Remove(this.FindByID(id));
+            this.context.SaveChanges();
         }
 
         public Articles Save(Articles model)
         {
-            throw new NotImplementedException();
+            this.context.Add(model);
+            this.context.SaveChanges();
+            return model;
         }
 
         public Articles Update(Articles model)
         {
-            throw new NotImplementedException();
-        }
-
-        Articles CrudRepository<Articles>.FindByID(int id)
-        {
-            throw new NotImplementedException();
+            this.context.Add(model);
+            this.context.SaveChanges();
+            return model;
         }
     }
 }

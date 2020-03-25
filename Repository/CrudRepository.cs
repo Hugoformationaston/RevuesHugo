@@ -10,7 +10,7 @@ namespace Revues.Repository
         public IQueryable<T> Filter(T model);
         public IQueryable<T> FindAll();
         public T FindByID(int id);
-        public IQueryable<T> Remove(int id);
+        public void Remove(int id);
         public T Update(T model);
         public T Save(T model);   
     }

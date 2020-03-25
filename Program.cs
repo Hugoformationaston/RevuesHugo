@@ -15,9 +15,9 @@ namespace Revues
     {
         public static void Main(string[] args)
         {
-            RevuesContext context = new RevuesContext();
+            RevueContext context = new RevueContext();
 
-            AuteursRepository aRepo = new AuteursRepository(context);
+            CrudRepository<Articles> crud = new CrudRepository(context);
 
             var auteurs = aRepo.FindAll();
 

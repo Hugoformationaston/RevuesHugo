@@ -6,51 +6,50 @@ using System.Threading.Tasks;
 
 namespace Revues.Repository
 {
-    public class RevuesImplementsRepository : CrudRepository<Revue>
+    public class RevuesImplementsRepository : CrudRepository<Domaine.Revues>
     {
-        private RevuesContext context;
+        private RevueContext context;
 
-        public RevuesImplementsRepository(RevuesContext context)
+        public RevuesImplementsRepository(RevueContext context)
         {
             this.context = context;
         }
 
-        public IQueryable<Revue> Filter(Revue model)
+        public IQueryable<Domaine.Revues> Filter(Domaine.Revues model)
         {
             throw new NotImplementedException();
         }
 
-        public IQueryable<Revue> FindAll()
+        public IQueryable<Domaine.Revues> FindAll()
         {
             //SELECT * FROM Auteurs;
-            return this.context.Revue.Select(Revue => Revue);
+            return this.context.Revues.Select(revue => revue);
         }
-        public Revue FindByID(int id)
+        public Domaine.Revues FindByID(int id)
         {
-            return this.context.Revue.Find(id);
+            return this.context.Revues
+                .Where(revue => revue.Id == id)
+                .First();
         }
 
-        public IQueryable<Revue> Remove(int id)
+        public void Remove(int id)
         {
-            Revue model = this.FindByID(id);
-            this.context.Remove(model);
+            this.context.Remove(this.FindByID(id));
+            this.context.SaveChanges();
         }
 
-        public Revue Save(Revue model)
+        public Domaine.Revues Save(Domaine.Revues model)
         {
             this.context.Add(model);
             this.context.SaveChanges();
             return model;
         }
 
-        public Revue Update(Revue model)
+        public Domaine.Revues Update(Domaine.Revues model)
         {
-            throw new NotImplementedException();
-        }
-
-        Numero CrudRepository<Numero>.FindByID(int id)
-        {
-            return this.context.Revue.Find(id);
+            this.context.Add(model);
+            this.context.SaveChanges();
+            return model;
         }
     }
 }
