@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Revues.Repository
 {
-    public class ArticlesImplementsRepository : CrudRepository<Articles>
+    public class ArticlesImplementsRepository : CrudRepository<Article>
     {
         private RevueContext context;
 
@@ -15,17 +15,17 @@ namespace Revues.Repository
             this.context = context;
         }
 
-        public IQueryable<Articles> Filter(Articles model)
+        public IQueryable<Article> Filter(Article model)
         {
             throw new NotImplementedException();
         }
 
-        public IQueryable<Articles> FindAll()
+        public IQueryable<Article> FindAll()
         {
             //SELECT * FROM Auteurs;
             return this.context.Articles.Select(article => article);
         }
-        public Articles FindByID(int id)
+        public Article FindByID(int id)
         {
             return this.context.Articles
                 .Where(article => article.Id == id)
@@ -38,14 +38,14 @@ namespace Revues.Repository
             this.context.SaveChanges();
         }
 
-        public Articles Save(Articles model)
+        public Article Save(Article model)
         {
             this.context.Add(model);
             this.context.SaveChanges();
             return model;
         }
 
-        public Articles Update(Articles model)
+        public Article Update(Article model)
         {
             this.context.Add(model);
             this.context.SaveChanges();

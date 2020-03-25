@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace Revues.Domaine
 {
-    public partial class Auteurs
+    public partial class Auteur
     {
-        public Auteurs()
+        public Auteur()
         {
             Ecrit = new HashSet<Ecrit>();
         }

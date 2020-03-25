@@ -8,7 +8,7 @@ namespace Revues.Domaine
         public int AuteursId { get; set; }
         public int ArticlesId { get; set; }
 
-        public virtual Articles Articles { get; set; }
-        public virtual Auteurs Auteurs { get; set; }
+        public virtual Article Articles { get; set; }
+        public virtual Auteur Auteurs { get; set; }
     }
 }

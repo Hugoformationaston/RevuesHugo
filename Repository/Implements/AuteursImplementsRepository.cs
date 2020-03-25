@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Revues.Repository
 {
-    public class AuteursImplementsRepository : CrudRepository<Auteurs>
+    public class AuteursImplementsRepository : CrudRepository<Auteur>
     {
         private RevueContext context;
 
@@ -15,17 +15,17 @@ namespace Revues.Repository
             this.context = context;
         }
 
-        public IQueryable<Auteurs> Filter(Auteurs model)
+        public IQueryable<Auteur> Filter(Auteur model)
         {
             throw new NotImplementedException();
         }
 
-        public IQueryable<Auteurs> FindAll()
+        public IQueryable<Auteur> FindAll()
         {
             //SELECT * FROM Auteurs;
             return this.context.Auteurs.Select(auteur => auteur);
         }
-        public Auteurs FindByID(int id)
+        public Auteur FindByID(int id)
         {
             return this.context.Auteurs
                 .Where(auteur => auteur.Id == id)
@@ -38,14 +38,14 @@ namespace Revues.Repository
             this.context.SaveChanges();
         }
 
-        public Auteurs Save(Auteurs model)
+        public Auteur Save(Auteur model)
         {
             this.context.Add(model);
             this.context.SaveChanges();
             return model;
         }
 
-        public Auteurs Update(Auteurs model)
+        public Auteur Update(Auteur model)
         {
             this.context.Add(model);
             this.context.SaveChanges();

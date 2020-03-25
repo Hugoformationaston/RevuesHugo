@@ -11,7 +11,7 @@ namespace Revues.Domaine
         public int? PageFin { get; set; }
         public int Id { get; set; }
 
-        public virtual Articles Articles { get; set; }
+        public virtual Article Articles { get; set; }
         public virtual Revues Revues { get; set; }
     }
 }

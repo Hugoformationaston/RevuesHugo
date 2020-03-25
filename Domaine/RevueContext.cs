@@ -15,8 +15,8 @@ namespace Revues.Domaine
         {
         }
 
-        public virtual DbSet<Articles> Articles { get; set; }
-        public virtual DbSet<Auteurs> Auteurs { get; set; }
+        public virtual DbSet<Article> Articles { get; set; }
+        public virtual DbSet<Auteur> Auteurs { get; set; }
         public virtual DbSet<Ecrit> Ecrit { get; set; }
         public virtual DbSet<Numero> Numero { get; set; }
         public virtual DbSet<Revues> Revues { get; set; }
@@ -32,7 +32,7 @@ namespace Revues.Domaine
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Articles>(entity =>
+            modelBuilder.Entity<Article>(entity =>
             {
                 entity.ToTable("articles");
 
@@ -53,7 +53,7 @@ namespace Revues.Domaine
                     .HasCollation("utf8mb4_general_ci");
             });
 
-            modelBuilder.Entity<Auteurs>(entity =>
+            modelBuilder.Entity<Auteur>(entity =>
             {
                 entity.ToTable("auteurs");
 
