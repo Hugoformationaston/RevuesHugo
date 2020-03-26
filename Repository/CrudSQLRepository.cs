@@ -28,7 +28,7 @@ namespace Revues.Repository
 
         public T FindByID(int id)
         {
-            return this.table.Where(model => model.Id == id);
+            return this.table.Where(model => model.Id == id).First();
         }
 
         public void Remove(int id)

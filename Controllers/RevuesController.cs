@@ -37,11 +37,21 @@ namespace Revues.Controllers
         /// La fonction "FindAll" retourne la fonction "FindAll" du service repository et fais une 
         /// requête "HttpGet" au serveur pour retourner tous les Revues.
         /// </summary>
+        /// <returns>
+        /// Si erreur il y a, le Try/Catch renvoi l'erreur 400 "BadRequest"
+        /// </returns>
         [HttpGet]
         [Route("")]
-        public IEnumerable<Revues> FindAll()
+        public IActionResult FindAll()
         {
-            return this.repo.FindAll();
+            try
+            {
+                return Ok(this.repo.FindAll());
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
 
         /// <summary>
@@ -50,44 +60,85 @@ namespace Revues.Controllers
         /// Il fait une requête [HttpPost] qui permet d'ajouter sur le serveur.
         /// </summary>
         /// <param name="r"></param>
+        /// <returns>
+        /// Si erreur il y a, le Try/Catch renvoi l'erreur 400 "BadRequest"
+        /// </returns>
         [HttpPost]
         [Route("")]
-        public Revues Save([FromBody]Revues r)
+        public IActionResult Save([FromBody]Revues r)
         {
-            return this.repo.Save(r);
+            try
+            {
+                return Ok(this.repo.Save(r));
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
 
         /// <summary>
         /// La fonction "FindById" retourne la fonction "FindById" du service repository et fais une 
         /// requête "HttpGet" au serveur pour retourner une Revue via son Id.
         /// </summary>
+        /// <returns>
+        /// Si erreur il y a, le Try/Catch renvoi l'erreur 404 "NotFound"
+        /// </returns>
         [HttpGet]
         [Route("{id}")]
-        public Revues FindById(int id)
+        public IActionResult FindById(int id)
         {
-            return this.repo.FindByID(id);
+            try
+            {
+                return Ok(this.repo.FindByID(id));
+            }
+            catch (IndexOutOfRangeException e)
+            {
+                return NotFound(e.Message);
+            }
         }
 
         /// <summary>
         /// La fonction "Remove" utilise la fonction "Remove" du service repository et fais une 
         /// requête "HttpDelete" au serveur pour supprimer une Revue via son Id.
         /// </summary>
+        /// <returns>
+        /// Si erreur il y a, le Try/Catch renvoi l'erreur 404 "NotFound"
+        /// </returns>
         [HttpDelete]
         [Route("{id}")]
-        public void Remove(int id)
+        public IActionResult Remove(int id)
         {
-            this.repo.Remove(id);
+            try
+            {
+                this.repo.Remove(id);
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                return NotFound(e.Message);
+            }
         }
 
         /// <summary>
         /// La fonction "Update" retourne la fonction "Update" du service repository et fais une 
         /// requête "HttpPut" au serveur pour modifier une Revue.
         /// </summary>
+        /// <returns>
+        /// Si erreur il y a, le Try/Catch renvoi l'erreur 400 "BadRequest"
+        /// </returns>
         [HttpPut]
         [Route("")]
-        public Revues Update(Revues r)
+        public IActionResult Update(Revues r)
         {
-            return this.repo.Update(r);
+            try
+            {
+                return Ok(this.repo.Update(r));
+            }
+            catch(Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
     }
 }

@@ -15,16 +15,7 @@ namespace Revues
     {
         public static void Main(string[] args)
         {
-            RevueContext context = new RevueContext();
-
-            CrudRepository<Article> crud = new CrudRepository(context);
-
-            var auteurs = aRepo.FindAll();
-
-            foreach (var auteur in auteurs)
-            {
-                Console.WriteLine(auteurs);
-            }
+            CreateHostBuilder(args).Build().Run();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
